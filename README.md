@@ -11,11 +11,14 @@ Please follow those steps to install the project as a vscode extension locally
 
 ## Features
 
-`>util.generate: generate israel id`
+`>util.generate: generate israel Id`
 generates valid israel id and copies to clipboard
 
 `>>util.example: example`
 example of a registered command that show an information popup
+
+`>util.generate: insert react fc with interface`
+Place new component in the active text editor
 
 ## Requirements
 

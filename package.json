@@ -19,6 +19,11 @@
         "category": "util.generate"
       },
       {
+        "command": "vsutils.fc-ts",
+        "title": "insert react fc with interface",
+        "category": "util.generate"
+      },
+      {
         "command": "vsutils.example",
         "title": "example",
         "category": "util.example"

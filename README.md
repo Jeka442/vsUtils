@@ -2,6 +2,13 @@
 
 vscode utils extension
 
+## Installation (localy)
+Please follow those steps to install the project as a vscode extension locally
+* Download the project and install dependencies ( npm i )
+* Zip the project ( the zip file must be extension/...)
+* change the zip file name to *extension.vsix*
+* run `code --install-extension extension.vsix`
+
 ## Features
 
 `>util.generate: generate israel id`

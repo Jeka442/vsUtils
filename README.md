@@ -22,6 +22,7 @@ example of a registered command that show an information popup
 vscode v-1.88 or higher
 
 
+
 ## Guidelines
 
 To register a new command please follow those steps:

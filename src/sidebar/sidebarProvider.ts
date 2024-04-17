@@ -1,7 +1,7 @@
 import path from "path";
 import * as vscode from "vscode";
 
-export function registerWebViewProvider(context: vscode.ExtensionContext) {
+export function registerSidebarProvider(context: vscode.ExtensionContext) {
   const provider = new SidebarProvider(context);
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider("vsutils-sidebar", provider)

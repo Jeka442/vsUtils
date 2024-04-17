@@ -51,6 +51,11 @@
       {
         "command": "vsutils.chucknorrisJokes",
         "title": "chucknorris jokes",
+        "category": "util.theme"
+      },
+      {
+        "command": "vsutils.changeColorTheme",
+        "title": "Set vs color",
         "category": "util.chucknorrisJokes"
       }
     ],

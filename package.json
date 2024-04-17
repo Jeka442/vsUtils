@@ -22,7 +22,7 @@
         {
           "id": "vsutils-sidebar-view",
           "title": "utils",
-          "icon": "src/media/icon.svg"
+          "icon": "src/media/icon.png"
         }
       ]
     },
@@ -32,7 +32,7 @@
           "type": "webview",
           "id": "vsutils-sidebar",
           "name": "utils view",
-          "icon": "src/media/icon.svg",
+          "icon": "src/media/icon.png",
           "contextualTitle": "vsUtilsSidebar"
         }
       ]
@@ -53,7 +53,33 @@
         "title": "example",
         "category": "util.example"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "vsutils config",
+      "properties": {
+        "vsutil.customCommands": {
+          "type": "array",
+          "description": "List of custom commands with their names and actions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the command"
+              },
+              "command": {
+                "type": "string",
+                "description": "VS Code command to execute"
+              }
+            },
+            "required": [
+              "name",
+              "command"
+            ]
+          }
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

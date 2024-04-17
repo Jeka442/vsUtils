@@ -59,6 +59,11 @@
         "category": "util.generate"
       },
       {
+        "command": "vsutils.regexTester",
+        "title": "Test regex",
+        "category": "util.utils"
+      },
+      {
         "command": "vsutils.chucknorrisJokes",
         "title": "chucknorris jokes",
         "category": "util.theme"

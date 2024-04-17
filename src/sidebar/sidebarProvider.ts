@@ -39,6 +39,21 @@ class SidebarProvider implements vscode.WebviewViewProvider {
       path.join(context.extensionPath, "src", "sidebar", "sidebar.html")
     );
     const content = await vscode.workspace.fs.readFile(filePath);
-    return content.toString();
+    let html = content.toString();
+    const customCommands = await vscode.workspace
+      .getConfiguration()
+      .get<{ command: string; name: string }[]>("vsutil.customCommands");
+    if (customCommands && customCommands.length > 0) {
+      let customCommandHtml = `<div style="width:100%"> <h2>Custom</h2>`;
+      for (let command of customCommands) {
+        customCommandHtml += `<button onclick="command('${command.command}')">${command.name}</button>`;
+      }
+      customCommandHtml += "</div>";
+      html = html.replace(
+        "<!--custom-command-placeholder-->",
+        customCommandHtml
+      );
+    }
+    return html;
   }
 }

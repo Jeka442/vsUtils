@@ -49,9 +49,9 @@
         "category": "util.generate"
       },
       {
-        "command": "vsutils.example",
-        "title": "example",
-        "category": "util.example"
+        "command": "vsutils.chucknorrisJokes",
+        "title": "chucknorris jokes",
+        "category": "util.chucknorrisJokes"
       }
     ],
     "configuration": {

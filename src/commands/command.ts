@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 import { randomIsraeliId } from "./randomIsraeliId";
-import { example } from "./example";
+import { chucknorrisJokes } from "./example";
 import { insertFcTs } from "./insertFc";
 
 export const commandsConfig = {
   ["vsutils.israelId"]: randomIsraeliId,
-  ["vsutils.example"]: example,
+  ["vsutils.chucknorrisJokes"]: chucknorrisJokes,
   ["vsutils.fc-ts"]: insertFcTs,
 } as const;
 

@@ -3,6 +3,7 @@
   "displayName": "vsUtils",
   "description": "",
   "version": "0.0.1",
+  "icon": "src/media/extension-icon.png",
   "engines": {
     "vscode": "^1.88.0"
   },

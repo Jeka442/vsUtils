@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        padding: 8px;
+        border-radius: 7px;
+      }
+    </style>
+  </head>
+  <body style="height: 100vh">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div style="width: 100%">
+        <h2>Actions</h2>
+        <button onclick="helloWorld()">click me</button>
+      </div>
+    </div>
+
+    <script>
+      const vscode = acquireVsCodeApi();
+      function helloWorld() {
+        vscode.postMessage({ message: "helloWorld", value: "test" });
+      }
+    </script>
+  </body>
+</html>

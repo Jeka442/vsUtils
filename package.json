@@ -3,6 +3,7 @@
   "displayName": "vsUtils",
   "description": "",
   "version": "0.0.1",
+  "icon": "src/media/icon.svg",
   "engines": {
     "vscode": "^1.88.0"
   },
@@ -12,6 +13,26 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vsutils-sidebar-view",
+          "title": "utils",
+          "icon": "src/media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vsutils-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "vsutils-sidebar",
+          "name": "utils view",
+          "icon": "src/media/icon.svg",
+          "contextualTitle": "vsUtilsSidebar"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "vsutils.israelId",

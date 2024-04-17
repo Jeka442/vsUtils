@@ -6,8 +6,15 @@
     <title>Document</title>
     <style>
       button {
-        padding: 8px;
-        border-radius: 7px;
+        width: 100%;
+        padding: 5px;
+        background-color: #58c3e5;
+        cursor: pointer;
+        margin-bottom: 5px;
+        border: 0;
+      }
+      button:hover {
+        background-color: #13b3e4;
       }
     </style>
   </head>
@@ -21,15 +28,20 @@
       "
     >
       <div style="width: 100%">
-        <h2>Actions</h2>
-        <button onclick="helloWorld()">click me</button>
+        <h2>Generators</h2>
+        <button onclick="command('vsutils.israelId')">Israel id</button>
+        <button onclick="command('vsutils.fc-ts')">Function component</button>
+      </div>
+      <div style="width: 100%">
+        <h2>Example</h2>
+        <button onclick="command('vsutils.example')">example</button>
       </div>
     </div>
 
     <script>
       const vscode = acquireVsCodeApi();
-      function helloWorld() {
-        vscode.postMessage({ message: "helloWorld", value: "test" });
+      function command(cmd) {
+        vscode.postMessage({ message: "command", value: cmd });
       }
     </script>
   </body>

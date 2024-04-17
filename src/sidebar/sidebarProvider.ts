@@ -26,8 +26,8 @@ class SidebarProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.onDidReceiveMessage(async (data) => {
       switch (data.message) {
-        case "helloWorld": {
-          vscode.window.showErrorMessage(data.value);
+        case "command": {
+          await vscode.commands.executeCommand(data.value);
           break;
         }
       }

@@ -2,11 +2,13 @@ import * as vscode from "vscode";
 import { randomIsraeliId } from "./randomIsraeliId";
 import { chucknorrisJokes } from "./example";
 import { vsColorTheme } from "./vsColorTheme";
+import { showRegexTester } from "./showRegexTester";
 
 export const commandsConfig = {
   ["vsutils.israelId"]: randomIsraeliId,
   ["vsutils.chucknorrisJokes"]: chucknorrisJokes,
   ["vsutils.changeColorTheme"]: vsColorTheme,
+  ["vsutils.regexTester"]: showRegexTester,
 } as const;
 
 /**

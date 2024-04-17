@@ -17,6 +17,20 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-snippets.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript-snippets.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescript-snippets.json"
+      }
+    ],
     "viewsContainers": {
       "activitybar": [
         {
@@ -41,11 +55,6 @@
       {
         "command": "vsutils.israelId",
         "title": "generate israel Id",
-        "category": "util.generate"
-      },
-      {
-        "command": "vsutils.fc-ts",
-        "title": "insert react fc with interface",
         "category": "util.generate"
       },
       {

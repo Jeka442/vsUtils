@@ -1,19 +1,4 @@
-import * as vscode from "vscode";
-export const showJsonViewer = () => {
-  const panel = vscode.window.createWebviewPanel(
-    "JsonViewerWebview",
-    "JsonViewer tester",
-    vscode.ViewColumn.One,
-    {
-      enableScripts: true,
-    }
-  );
-
-  panel.webview.html = getWebviewContent();
-};
-function getWebviewContent(): string {
-  return `  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -102,7 +87,7 @@ function getWebviewContent(): string {
           <h2>Tree view</h2>
           <div
             id="treeView"
-            style="width: 100%; flex-grow: 1; border: 1px solid"
+            style="width: 100%; flex-grow: 1; border: 1px solid; overflow: auto;"
           ></div>
         </div>
       </div>
@@ -111,7 +96,7 @@ function getWebviewContent(): string {
     <script>
       function jsonToUl(json) {
         if (typeof json !== "object" || json === null) {
-          return \`<li class="json-value">\${json}</li>\`;
+          return `<li class="json-value">${json}</li>`;
         }
 
         const listItems = Object.entries(json)
@@ -119,18 +104,18 @@ function getWebviewContent(): string {
             const hasNested = typeof value === "object";
             const content = hasNested
               ? jsonToUl(value)
-              : \`<li class="json-value">\${key}: \${value}</li>\`;
+              : `<li class="json-value"><span style="color:#008000">${key}</span>: <span style="color:#D87C06"> ${value}</span></li>`;
             return hasNested
-              ? \`<li class="json-key">
-             <input type="checkbox" id="item-\${index}" class="toggle" checked>
-             <label for="item-\${index}">\${key}</label>
-             \${content}
-           </li>\`
+              ? `<li class="json-key">
+             <input type="checkbox" id="item-${index}" class="toggle" checked>
+             <label for="item-${index}"><span style="color:#008000">${key}</span></label>
+             ${content}
+           </li>`
               : content;
           })
           .join("");
 
-        return \`<ul class="json-list">\${listItems}</ul>\`;
+        return `<ul class="json-list">${listItems}</ul>`;
       }
 
       function clickHandler() {
@@ -138,16 +123,17 @@ function getWebviewContent(): string {
           let value = document.getElementById("textArea").value;
           const obj = JSON.parse(value);
           document.getElementById("treeView").innerHTML = jsonToUl(obj);
-          document.getElementById("textArea").value = JSON.stringify(obj, null, 3);
+          document.getElementById("textArea").value = JSON.stringify(
+            obj,
+            null,
+            3
+          );
         } catch (err) {
           document.getElementById(
             "treeView"
-          ).innerHTML = \`<h2>Invalid json</h2><p>\${err}</p>\`;
+          ).innerHTML = `<h2>Invalid json</h2><p>${err}</p>`;
         }
       }
     </script>
   </body>
 </html>
-
-  `;
-}

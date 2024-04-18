@@ -3,7 +3,7 @@ import { randomIsraeliId } from "./randomIsraeliId";
 import { chucknorrisJokes } from "./example";
 import { vsColorTheme } from "./vsColorTheme";
 import { showRegexTester } from "./showRegexTester/regexTester";
-import { showJsonViewer } from "./showJsonViewer";
+import { showJsonViewer } from "./showJsonViewer/jsonViewer";
 import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 
 interface IActionConfig {

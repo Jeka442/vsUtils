@@ -19,7 +19,7 @@ async function getWebviewContent(context: vscode.ExtensionContext) {
       context.extensionPath,
       "src",
       "commands",
-      "regexTester",
+      "showRegexTester",
       "view.html"
     )
   );

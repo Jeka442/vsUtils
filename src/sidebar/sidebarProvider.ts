@@ -1,6 +1,6 @@
 import path from "path";
 import * as vscode from "vscode";
-import { actionConfigurations } from "../commands/command";
+import { actionConfigurations } from "../commands/configuration";
 
 export function registerSidebarProvider(context: vscode.ExtensionContext) {
   const provider = new SidebarProvider(context);

@@ -2,7 +2,7 @@ import * as assert from "assert";
 import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
-import { actionConfigurations } from "../commands/command";
+import { actionConfigurations } from "../commands/configuration";
 
 suite("Extension Test Suite", () => {
   vscode.window.showInformationMessage("Start all tests.");

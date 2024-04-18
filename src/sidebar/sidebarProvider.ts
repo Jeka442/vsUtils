@@ -1,5 +1,6 @@
 import path from "path";
 import * as vscode from "vscode";
+import { actionConfigurations } from "../commands/command";
 
 export function registerSidebarProvider(context: vscode.ExtensionContext) {
   const provider = new SidebarProvider(context);
@@ -54,6 +55,18 @@ class SidebarProvider implements vscode.WebviewViewProvider {
         customCommandHtml
       );
     }
+
+    let actionButtonsHtml = "";
+    for (let item of actionConfigurations) {
+      let stack = `<div style="width:100%"><h2>${item.title}</h2>`;
+      for (let child of item.items) {
+        stack += `<button onclick="command('${child.command}')">${child.name}</button>`;
+      }
+      stack += "</div>";
+      actionButtonsHtml += stack;
+    }
+
+    html = html.replace("<!--action-buttons-placeholder-->", actionButtonsHtml);
     return html;
   }
 }

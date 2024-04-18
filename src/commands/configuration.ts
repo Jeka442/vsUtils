@@ -3,6 +3,7 @@ import { randomIsraeliId } from "./randomIsraeliId";
 import { chucknorrisJokes } from "./example";
 import { vsColorTheme } from "./vsColorTheme";
 import { showRegexTester } from "./showRegexTester";
+import { showJsonViewer } from "./showJsonViewer";
 
 interface IActionConfig {
   title: string;
@@ -27,6 +28,11 @@ export const actionConfigurations: IActionConfig[] = [
         command: "vsutils.regexTester",
         callback: showRegexTester,
         name: "Regex tester",
+      },
+      {
+        command: "vsutils.showJsonViewer",
+        callback: showJsonViewer,
+        name: "Json viewer",
       },
     ],
   },

@@ -72,6 +72,11 @@
         "command": "vsutils.changeColorTheme",
         "title": "Set vs color",
         "category": "util.chucknorrisJokes"
+      },
+      {
+        "command": "vsutils.showJsonViewer",
+        "title": "Json viewer",
+        "category": "util.utils"
       }
     ],
     "configuration": {

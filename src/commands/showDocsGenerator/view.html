@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .propsItem {
+        display: grid;
+        grid-template-columns: 1fr 1fr 4fr;
+        gap: 20px;
+      }
+      #propsArray {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      input,
+      textarea,
+      span {
+        width: 100%;
+        background-color: inherit;
+        color: inherit;
+      }
+      .section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="display: flex; flex-direction: column; max-width: 700px; gap: 10px"
+    >
+      <div class="section">
+        <label>Description</label>
+        <textarea
+          oninput="generate()"
+          id="description"
+          style="resize: none; height: 100px"
+          placeholder="Description..."
+        ></textarea>
+      </div>
+      <div class="section">
+        <label>Function name</label>
+        <input oninput="generate()" id="funcName" placeholder="Function name" />
+      </div>
+      <div class="section">
+        <label>Props</label>
+        <div style="width: 100%" id="propsArray">
+          <div class="propsItem">
+            <input placeholder="type" oninput="generate()" />
+            <input placeholder="name" oninput="generate()" />
+            <input placeholder="description" oninput="generate()" />
+          </div>
+        </div>
+        <button style="align-self: flex-start" onclick="addPropInput()">
+          add
+        </button>
+      </div>
+    </div>
+    <div style="margin-top: 20px; color: green" id="result">/** */</div>
+
+    <script>
+      function addPropInput() {
+        const doc = document.createElement("div");
+        doc.className = "propsItem";
+        doc.innerHTML = `
+        <input placeholder="type" oninput="generate()"/>
+            <input placeholder="name" oninput="generate()"/>
+            <input placeholder="description" oninput="generate()"/>
+        `;
+        document.getElementById("propsArray").appendChild(doc);
+      }
+
+      function generate() {
+        const funcName = document.getElementById("funcName").value;
+        const description = document.getElementById("description").value;
+        const propsSection = document.getElementsByClassName("propsItem");
+        let doc = "/**";
+        if (description && description != "") {
+          let val = "<br/>* " + description.replaceAll("\n", "<br/>*");
+          doc += val + "<br/>*";
+        }
+
+        if (propsSection)
+          for (let section of Array.from(propsSection)) {
+            const arr = section.children;
+            const type = arr[0]?.value ?? "";
+            const name = arr[1]?.value ?? "";
+            const desc = arr[2]?.value ?? "";
+            if (arr.length > 0 || type.length > 0 || desc.length > 0) {
+              let line = `<br/>*${type.length > 0 ? ` @param {${type}}` : ""}${
+                name.length > 0 ? ` ${name}` : ""
+              }${desc.length > 0 ? ` - ${desc}` : ""}`;
+              doc += line;
+            }
+          }
+
+        if (funcName && funcName != "") doc += `<br/>* @function ${funcName}`;
+
+        doc += "<br/>*/";
+        document.getElementById("result").innerHTML = doc;
+      }
+    </script>
+  </body>
+</html>

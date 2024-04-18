@@ -77,6 +77,11 @@
         "command": "vsutils.showJsonViewer",
         "title": "Json viewer",
         "category": "util.utils"
+      },
+      {
+        "command": "vsutils.showDocGenerator",
+        "title": "Documentation Generator",
+        "category": "util.generate"
       }
     ],
     "configuration": {

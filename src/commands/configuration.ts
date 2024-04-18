@@ -2,12 +2,17 @@ import * as vscode from "vscode";
 import { randomIsraeliId } from "./randomIsraeliId";
 import { chucknorrisJokes } from "./example";
 import { vsColorTheme } from "./vsColorTheme";
-import { showRegexTester } from "./showRegexTester";
-import { showJsonViewer } from "./showJsonViewer";
+import { showRegexTester } from "./showRegexTester/regexTester";
+import { showJsonViewer } from "./showJsonViewer/jsonViewer";
+import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 
 interface IActionConfig {
   title: string;
-  items: { command: string; callback: () => void; name: string }[];
+  items: {
+    command: string;
+    callback: (context?: vscode.ExtensionContext) => void;
+    name: string;
+  }[];
 }
 
 export const actionConfigurations: IActionConfig[] = [
@@ -18,6 +23,11 @@ export const actionConfigurations: IActionConfig[] = [
         command: "vsutils.israelId",
         callback: randomIsraeliId,
         name: "Israel id",
+      },
+      {
+        command: "vsutils.showDocGenerator",
+        callback: showDocsGeneratorts,
+        name: "Documentation Generator",
       },
     ],
   },
@@ -65,9 +75,12 @@ export const actionConfigurations: IActionConfig[] = [
 export function registerCommandHandler(context: vscode.ExtensionContext) {
   for (let commandsConfig of actionConfigurations) {
     for (let item of commandsConfig.items) {
+      const withContext = () => {
+        return item.callback(context);
+      };
       let disposable = vscode.commands.registerCommand(
         item.command,
-        item.callback
+        withContext
       );
       context.subscriptions.push(disposable);
     }

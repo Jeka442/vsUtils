@@ -5,6 +5,7 @@ import { vsColorTheme } from "./vsColorTheme";
 import { showRegexTester } from "./showRegexTester/regexTester";
 import { showJsonViewer } from "./showJsonViewer/jsonViewer";
 import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
+import { getApiChecker } from "./getApiChecker";
 
 interface IActionConfig {
   title: string;
@@ -44,6 +45,11 @@ export const actionConfigurations: IActionConfig[] = [
         callback: showJsonViewer,
         name: "Json viewer",
       },
+      {
+        command: "vsutils.apiGet",
+        callback: getApiChecker,
+        name: "Api get checker"
+      }
     ],
   },
   {

@@ -82,6 +82,11 @@
         "command": "vsutils.showDocGenerator",
         "title": "Documentation Generator",
         "category": "util.generate"
+      },
+      {
+        "command": "vsutils.apiGet",
+        "title": "Get api response",
+        "category": "util.utils"
       }
     ],
     "configuration": {

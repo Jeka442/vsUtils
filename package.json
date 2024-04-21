@@ -87,6 +87,18 @@
         "command": "vsutils.apiGet",
         "title": "Get api response",
         "category": "util.utils"
+      },
+      {
+        "command": "vsutils.showSvg",
+        "title": "Preview svg",
+        "category": "util.utils"
+      }
+    ],
+    "keybindings":[
+      {
+        "command": "vsutils.showSvg",
+        "key": "ctrl+i",
+        "when": "editorTextFocus"
       }
     ],
     "configuration": {

@@ -6,6 +6,7 @@ import { showRegexTester } from "./showRegexTester/regexTester";
 import { showJsonViewer } from "./showJsonViewer/jsonViewer";
 import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 import { getApiChecker } from "./getApiChecker";
+import { showSvg } from "./showSvg/showSvg";
 
 interface IActionConfig {
   title: string;
@@ -48,8 +49,8 @@ export const actionConfigurations: IActionConfig[] = [
       {
         command: "vsutils.apiGet",
         callback: getApiChecker,
-        name: "Api get checker"
-      }
+        name: "Api get checker",
+      },
     ],
   },
   {
@@ -64,6 +65,11 @@ export const actionConfigurations: IActionConfig[] = [
         command: "vsutils.chucknorrisJokes",
         callback: chucknorrisJokes,
         name: "Chuck norris",
+      },
+      {
+        command: "vsutils.showSvg",
+        callback: showSvg,
+        name: "Preview svg",
       },
     ],
   },

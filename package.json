@@ -98,7 +98,7 @@
       {
         "command": "vsutils.showSvg",
         "key": "ctrl+i",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceExtname == .svg"
       }
     ],
     "configuration": {

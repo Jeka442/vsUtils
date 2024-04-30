@@ -17,7 +17,7 @@ export const showSvg = async (context?: vscode.ExtensionContext) => {
       );
       panel.webview.html = await getWebviewContent(context, text);
     } else {
-      vscode.window.showInformationMessage("Not an SVG file.");
+      return vscode.window.showInformationMessage("Not an SVG file.");
     }
   } else {
     vscode.window.showInformationMessage("No active editor.");

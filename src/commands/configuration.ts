@@ -7,6 +7,7 @@ import { showJsonViewer } from "./showJsonViewer/jsonViewer";
 import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 import { getApiChecker } from "./getApiChecker";
 import { showSvg } from "./showSvg/showSvg";
+import { showLottie } from "./showLottie/showLottie";
 
 interface IActionConfig {
   title: string;
@@ -66,13 +67,24 @@ export const actionConfigurations: IActionConfig[] = [
         callback: chucknorrisJokes,
         name: "Chuck norris",
       },
+    ],
+  },
+  {
+    title: "Preview",
+    items: [
       {
         command: "vsutils.showSvg",
         callback: showSvg,
         name: "Preview svg",
       },
-    ],
-  },
+      {
+        command: "vsutils.previewLottie",
+        callback: showLottie,
+        name: "Preview lottie"
+      }
+    ]
+  }
+
 ] as const;
 
 /**

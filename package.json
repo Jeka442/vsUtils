@@ -91,14 +91,24 @@
       {
         "command": "vsutils.showSvg",
         "title": "Preview svg",
-        "category": "util.utils"
+        "category": "util.preview"
+      },
+      {
+        "command": "vsutils.previewLottie",
+        "title": "Preview lottie",
+        "category": "util.preview"
       }
     ],
-    "keybindings":[
+    "keybindings": [
       {
         "command": "vsutils.showSvg",
         "key": "ctrl+i",
         "when": "editorTextFocus && resourceExtname == .svg"
+      },
+      {
+        "command": "vsutils.previewLottie",
+        "key": "ctrl+i",
+        "when": "editorTextFocus && resourceExtname == .json"
       }
     ],
     "configuration": {
@@ -147,6 +157,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "lottie-web": "^5.12.2",
     "vscode-test": "^1.6.1"
   }
 }

@@ -8,6 +8,7 @@ import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 import { getApiChecker } from "./getApiChecker";
 import { showSvg } from "./showSvg/showSvg";
 import { showLottie } from "./showLottie/showLottie";
+import { showBase64 } from "./showBase64/showBase64";
 
 interface IActionConfig {
   title: string;
@@ -81,6 +82,11 @@ export const actionConfigurations: IActionConfig[] = [
         command: "vsutils.previewLottie",
         callback: showLottie,
         name: "Preview lottie"
+      },
+      {
+        command: "vsutils.base64",
+        callback: showBase64,
+        name: "Preview base64"
       }
     ]
   }

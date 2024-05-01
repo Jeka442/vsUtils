@@ -97,6 +97,11 @@
         "command": "vsutils.previewLottie",
         "title": "Preview lottie",
         "category": "util.preview"
+      },
+      {
+        "command": "vsutils.base64",
+        "title": "Preview base64",
+        "category": "util.preview"
       }
     ],
     "keybindings": [

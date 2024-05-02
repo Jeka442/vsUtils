@@ -3,10 +3,11 @@
   "displayName": "vsUtils",
   "description": "",
   "version": "0.0.1",
-  "icon": "src/media/extension-icon.png",
+  "icon": "extension-icon.png",
   "engines": {
     "vscode": "^1.88.0"
   },
+  "publisher": "Eivgeniy Gudilov",
   "categories": [
     "Other"
   ],
@@ -37,7 +38,7 @@
         {
           "id": "vsutils-sidebar-view",
           "title": "utils",
-          "icon": "src/media/icon.png"
+          "icon": "extension-icon.png"
         }
       ]
     },
@@ -47,7 +48,7 @@
           "type": "webview",
           "id": "vsutils-sidebar",
           "name": "utils view",
-          "icon": "src/media/icon.png",
+          "icon": "extension-icon.png",
           "contextualTitle": "vsUtilsSidebar"
         }
       ]
@@ -149,7 +150,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "18.x",

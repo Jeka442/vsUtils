@@ -6,7 +6,7 @@ import { showRegexTester } from "./showRegexTester/regexTester";
 import { showJsonViewer } from "./showJsonViewer/jsonViewer";
 import { showDocsGeneratorts } from "./showDocsGenerator/docGenerator";
 import { getApiChecker } from "./getApiChecker";
-import { showSvg } from "./showSvg/showSvg";
+import { showSvg, showSvgByText } from "./showSvg/showSvg";
 import { showLottie } from "./showLottie/showLottie";
 import { showBase64 } from "./showBase64/showBase64";
 
@@ -115,4 +115,14 @@ export function registerCommandHandler(context: vscode.ExtensionContext) {
       context.subscriptions.push(disposable);
     }
   }
+}
+
+export function registerAutomations(context: vscode.ExtensionContext){
+  let disposable = vscode.workspace.onDidOpenTextDocument((doc)=>{
+    if(doc.languageId === 'xml' && doc.fileName.endsWith('.svg')){
+      const text = doc.getText();
+      showSvgByText(context, text);
+    }
+  })
+  context.subscriptions.push(disposable);
 }

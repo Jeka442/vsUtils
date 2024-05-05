@@ -16,7 +16,7 @@
     "url": "https://github.com/Jeka442/vsUtils"
   },
   "license": "MIT",
-  "activationEvents": [],
+  "activationEvents": ["onLanguage:xml"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

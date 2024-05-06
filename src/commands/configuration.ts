@@ -9,6 +9,7 @@ import { getApiChecker } from "./getApiChecker";
 import { showSvg, showSvgByText } from "./showSvg/showSvg";
 import { showLottie } from "./showLottie/showLottie";
 import { showBase64 } from "./showBase64/showBase64";
+import { jsonToInterface } from "./jsonToInterface/jsonToInterface";
 
 interface IActionConfig {
   title: string;
@@ -33,6 +34,11 @@ export const actionConfigurations: IActionConfig[] = [
         callback: showDocsGeneratorts,
         name: "Documentation Generator",
       },
+      {
+        command: "vsutils.jsonToInterface",
+        callback: jsonToInterface,
+        name: "Json to Interface"
+      }
     ],
   },
   {

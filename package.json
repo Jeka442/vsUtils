@@ -80,6 +80,11 @@
         "category": "util.utils"
       },
       {
+        "command": "vsutils.jsonToInterface",
+        "title": "Interface from json",
+        "category": "util.generate"
+      },
+      {
         "command": "vsutils.showDocGenerator",
         "title": "Documentation Generator",
         "category": "util.generate"

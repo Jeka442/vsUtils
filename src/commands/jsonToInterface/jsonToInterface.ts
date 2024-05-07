@@ -45,7 +45,7 @@ function getInterfaceFromJSON(obj: any, name?: string) {
                 interfaceString += `    ${key}: any[];`;
               } else {
                 if (typeof obj[key][0][0] === "object") {
-                  interfaceString += `    ${key}: I${key}[];`;
+                  interfaceString += `    ${key}: I${key}[][];`;
                   nestedInterfaces.push(
                     getInterfaceFromJSON(obj[key][0][0], key)
                   );
@@ -130,7 +130,7 @@ function getInterfaceFromJSON(obj: any, name?: string) {
                       properties.set(prop + "?", `any[]`);
                     } else {
                       if (typeof obj[prop][0][0] === "object") {
-                        properties.set(prop + "?", `I${prop}[]`);
+                        properties.set(prop + "?", `I${prop}[][]`);
                         nestedInterfaces.push(
                           objectArrayHandler(obj[prop][0], prop)
                         );

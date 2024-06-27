@@ -23,5 +23,20 @@
     "prefix": "useeffect",
     "body": ["useEffect(() => {$2}, [$1])"],
     "description": "useEffect template"
+  },
+  "interface-vsutils": {
+    "prefix": "inter",
+    "body": ["interface I$1 {", "    $2", "}"],
+    "description": "interface"
+  },
+  "type-vsutils": {
+    "prefix": "type",
+    "body": ["type $1 = { $2 } "],
+    "description": "type"
+  },
+  "func-vsutils": {
+    "prefix": "func",
+    "body": ["const func = (props:$1):$2=>{", "    $3", "}"],
+    "description": "typescript function"
   }
 }

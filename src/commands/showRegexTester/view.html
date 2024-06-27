@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Input Form</title>
     <style>
+      body{
+        margin: 20px;
+        padding: 0;
+      }
       input {
         padding-block: 10px;
         font-weight: 600;
@@ -12,14 +16,24 @@
         color: inherit;
       }
       textarea {
-          background-color: inherit;
-          color: inherit;
-          font-size: 18px
+        background-color: inherit;
+        color: inherit;
+        font-size: 18px;
+      }
+
+      #docs{
+        display: grid;
+        grid-template-columns: 20% 80%;
+        column-gap: 20px;
+        max-width: 300px;
       }
     </style>
   </head>
   <body>
-    <div style="display: flex; flex-direction: column; gap: 50px; margin: 20px">
+    <div style="box-sizing: border-box; display: flex; width: 100%; gap: 20px;">
+
+    
+    <div style="display: flex; flex-direction: column; gap: 50px; flex:1">
       <div style="display: flex; flex-direction: column">
         <input
           type="text"
@@ -39,6 +53,31 @@
         ></textarea>
       </div>
     </div>
+
+    <div id="docs">
+      <span>[abc]</span><span>A single character of: a, b or c</span>
+      <span>[^abc]</span><span>A character except: a, b or c</span>
+      <span>[a-z]</span><span>A character in the range: a-z</span>
+      <span>[^a-z]</span><span>A character not in the range: a-z</span>
+      <span>[a-zA-Z]</span><span>A character in the range: a-z or A-Z</span>
+      <span>.</span><span>Any single character</span>
+      <span>a|b</span><span>Alternate - match either a or b</span>
+      <span>\s</span><span>Any whitespace character</span>
+      <span>\S</span><span>Any non-whitespace character</span>
+      <span>\d</span><span>Any non-digit</span<span>Any digit</span>
+      <span>\w</span>><span>\D</span><span>Any word character</span>
+      <span>\W</span><span>Any non-word character</span>
+      <span>a?</span><span>Zero or more of a</span<span>Zero or one of a</span>
+      <span>a+</span>><span>a*</span><span>One or more of a</span>
+      <span>a{3}</span><span>3 or more of a</span<span>Exactly 3 of a</span>
+      <span>a{3,6}</span>><span>a{3,}</span><span>Between 3 and 6 of a</span>
+      <span>^</span><span>End of string</span<span>Start of string</span>
+      <span>\b</span>><span>$</span><span>A word boundary</span>
+      <span>\B</span><span>Non-word boundary</span>
+    </div>
+
+    </div>
+
     <script>
       function regError(msg) {
         document.getElementById("errRegex").innerHTML = msg;

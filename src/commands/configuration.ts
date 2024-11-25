@@ -10,6 +10,8 @@ import { showSvg, showSvgByText } from "./showSvg/showSvg";
 import { showLottie } from "./showLottie/showLottie";
 import { showBase64 } from "./showBase64/showBase64";
 import { jsonToInterface } from "./jsonToInterface/jsonToInterface";
+import path from "path";
+import * as fs from "fs";
 
 interface IActionConfig {
   title: string;
@@ -37,8 +39,8 @@ export const actionConfigurations: IActionConfig[] = [
       {
         command: "vsutils.jsonToInterface",
         callback: jsonToInterface,
-        name: "Json to Interface"
-      }
+        name: "Json to Interface",
+      },
     ],
   },
   {
@@ -87,16 +89,15 @@ export const actionConfigurations: IActionConfig[] = [
       {
         command: "vsutils.previewLottie",
         callback: showLottie,
-        name: "Preview lottie"
+        name: "Preview lottie",
       },
       {
         command: "vsutils.base64",
         callback: showBase64,
-        name: "Preview base64"
-      }
-    ]
-  }
-
+        name: "Preview base64",
+      },
+    ],
+  },
 ] as const;
 
 /**
@@ -123,12 +124,53 @@ export function registerCommandHandler(context: vscode.ExtensionContext) {
   }
 }
 
-export function registerAutomations(context: vscode.ExtensionContext){
-  let disposable = vscode.workspace.onDidOpenTextDocument((doc)=>{
-    if(doc.languageId === 'xml' && doc.fileName.endsWith('.svg')){
+export function registerAutomations(context: vscode.ExtensionContext) {
+  let disposable = vscode.workspace.onDidOpenTextDocument((doc) => {
+    if (doc.languageId === "xml" && doc.fileName.endsWith(".svg")) {
       const text = doc.getText();
       showSvgByText(context, text);
     }
-  })
+  });
   context.subscriptions.push(disposable);
 }
+
+export function registerExtractToFile(context: vscode.ExtensionContext) {
+  let disposable = vscode.commands.registerCommand("vsutils.extractToFile", () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+    const selection = editor.selection;
+    const selectedContent = editor.document.getText(selection);
+    const filePath = path.dirname(editor.document.fileName);
+    vscode.window
+      .showInputBox({
+        prompt: "Enter new file name",
+        placeHolder: "Enter a valid file name",
+      })
+      .then((newFileName) => {
+        if (!newFileName) return;
+
+        const newFile = filePath + "\\" + newFileName;
+        fs.writeFileSync(newFile, selectedContent);
+        openFile(newFile);
+        vscode.window.showInformationMessage(
+          `${newFileName} has bean created!`
+        );
+      });
+  });
+  context.subscriptions.push(disposable);
+}
+
+async function openFile(filePath: string) {
+  try {
+    // Open the text document by its file path
+    const document = await vscode.workspace.openTextDocument(filePath);
+
+    // Show the document in the editor
+    await vscode.window.showTextDocument(document);
+  } catch (error) {
+    vscode.window.showErrorMessage("Failed to open file: ");
+  }
+}
+export function deactivate() {}

@@ -16,7 +16,9 @@
     "url": "https://github.com/Jeka442/vsUtils"
   },
   "license": "MIT",
-  "activationEvents": ["onLanguage:xml"],
+  "activationEvents": [
+    "onLanguage:xml"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -54,6 +56,11 @@
       ]
     },
     "commands": [
+      {
+        "command": "vsutils.extractToFile",
+        "title": "Extract to file",
+        "category": "util.gene"
+      },
       {
         "command": "vsutils.israelId",
         "title": "generate israel Id",
@@ -110,6 +117,14 @@
         "category": "util.preview"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vsutils.extractToFile",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
     "keybindings": [
       {
         "command": "vsutils.showSvg",

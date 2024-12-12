@@ -115,6 +115,10 @@
         "command": "vsutils.base64",
         "title": "Preview base64",
         "category": "util.preview"
+      },
+      {
+        "command": "vsutils.createComponent",
+        "title": "Create Component"
       }
     ],
     "menus": {
@@ -122,6 +126,12 @@
         {
           "command": "vsutils.extractToFile",
           "when": "editorHasSelection"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "vsutils.createComponent",
+          "group": "navigation@1"
         }
       ]
     },

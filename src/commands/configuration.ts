@@ -134,31 +134,108 @@ export function registerAutomations(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-export function registerExtractToFile(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand("vsutils.extractToFile", () => {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-      return;
-    }
-    const selection = editor.selection;
-    const selectedContent = editor.document.getText(selection);
-    const filePath = path.dirname(editor.document.fileName);
-    vscode.window
-      .showInputBox({
-        prompt: "Enter new file name",
-        placeHolder: "Enter a valid file name",
-      })
-      .then((newFileName) => {
-        if (!newFileName) return;
+export async function registerCreateComponent(
+  context: vscode.ExtensionContext
+) {
+  const disposable = vscode.commands.registerCommand(
+    "vsutils.createComponent",
+    (uri: vscode.Uri) => {
+      // `uri` is the URI of the folder or file clicked
+      if (uri) {
+        const folderPath = uri.fsPath;
+        vscode.window
+          .showInputBox({
+            prompt: "Enter component name",
+            placeHolder: "Enter a valid component name",
+          })
+          .then((componentName) => {
+            if (!componentName) return;
+            const componentFolderPath = path.join(folderPath, componentName);
+            const componentFilePath = path.join(
+              componentFolderPath,
+              `${componentName}.tsx`
+            );
+            const indexFilePath = path.join(componentFolderPath, `index.tsx`);
 
-        const newFile = filePath + "\\" + newFileName;
-        fs.writeFileSync(newFile, selectedContent);
-        openFile(newFile);
-        vscode.window.showInformationMessage(
-          `${newFileName} has bean created!`
-        );
-      });
-  });
+            try {
+              // Create the component folder
+              if (!fs.existsSync(componentFolderPath)) {
+                fs.mkdirSync(componentFolderPath);
+              }
+
+              // Create the component file
+              const componentContent = `
+  
+
+              export const ${componentName} = () => {
+                return (
+                  <div>
+                    <h1>${componentName}</h1>
+                  </div>
+                );
+              };
+              `;
+              fs.writeFileSync(componentFilePath, componentContent);
+
+              // Create the index file
+              const indexContent = `export * from "./${componentName}";`;
+              fs.writeFileSync(indexFilePath, indexContent);
+
+              // Notify the user of success
+              vscode.window.showInformationMessage(
+                `Component "${componentName}" created successfully!`
+              );
+            } catch (error) {
+              vscode.window.showErrorMessage(`Failed to create component`);
+            }
+          });
+      }
+    }
+  );
+
+  context.subscriptions.push(disposable);
+}
+
+export function registerExtractToFile(context: vscode.ExtensionContext) {
+  let disposable = vscode.commands.registerCommand(
+    "vsutils.extractToFile",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
+      const selection = editor.selection;
+      const selectedContent = editor.document.getText(selection);
+      const filePath = path.dirname(editor.document.fileName);
+      vscode.window
+        .showInputBox({
+          prompt: "Enter new file name",
+          placeHolder: "Enter a valid file name",
+        })
+        .then((newFileName) => {
+          if (!newFileName) return;
+
+          const newFile = path.join(filePath, newFileName);
+          try {
+            // Ensure the directory exists
+            const dir = path.dirname(newFile);
+            if (!fs.existsSync(dir)) {
+              fs.mkdirSync(dir, { recursive: true });
+            }
+
+            // Write the file
+            fs.writeFileSync(newFile, selectedContent);
+            openFile(newFile);
+
+            vscode.window.showInformationMessage(
+              `${newFileName} has been created!`
+            );
+          } catch (error) {
+            vscode.window.showErrorMessage(`Failed to create file`);
+          }
+        });
+    }
+  );
   context.subscriptions.push(disposable);
 }
 
@@ -173,4 +250,5 @@ async function openFile(filePath: string) {
     vscode.window.showErrorMessage("Failed to open file: ");
   }
 }
+
 export function deactivate() {}
